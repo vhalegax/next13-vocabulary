@@ -1,9 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 import { google } from 'googleapis'
-import googleKey from '../../../../google-key.json'
 
 import bodyParser from 'body-parser'
+
+const { GOOGLE_PRIVATE_KEY, GOOGLE_CLIENT_EMAIL } = process.env
 
 export const config = {
   api: {
@@ -18,8 +19,8 @@ const SHEET_RANGE = `Sheet1!A:F`
 
 const getGoogleClient = () => {
   const keys = {
-    client_email: googleKey.client_email,
-    private_key: googleKey.private_key
+    client_email: GOOGLE_CLIENT_EMAIL,
+    private_key: GOOGLE_PRIVATE_KEY
   }
 
   return new google.auth.JWT(keys.client_email, null, keys.private_key, [
