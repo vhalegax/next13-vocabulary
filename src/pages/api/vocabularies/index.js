@@ -51,6 +51,8 @@ const getVocabularies = async (req, res) => {
 
     return res.status(200).send(JSON.stringify(response))
   } catch (e) {
+    console.log(e)
+
     const error = { code: 400, message: e.message }
     return res.status(400).send(JSON.stringify({ error }))
   }
@@ -98,6 +100,8 @@ const createVocabularies = async (req, res) => {
 
     return res.status(200).send(JSON.stringify({ data: data }))
   } catch (e) {
+    console.log(e)
+
     const error = { code: 400, message: e.message }
     return res.status(400).send(JSON.stringify({ error }))
   }
