@@ -56,85 +56,93 @@ function HomePage() {
   }
 
   return (
-    <div className="bg-gray-300 min-h-screen text-black">
+    <div className="min-h-screen bg-base-300 text-base-content">
       <Navbar />
-
       <div className="container mx-auto my-4 p-4">
-        {isLoadingVocabularies ? (
-          'Loading...'
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full max-w-full table-fixed">
-              <thead>
-                <tr>
-                  <th
-                    className="border p-3 w-2/5"
-                    style={{ wordWrap: 'break-word' }}
-                  >
-                    IND
-                  </th>
-                  <th
-                    className="border p-3 w-2/5"
-                    style={{ wordWrap: 'break-word' }}
-                  >
-                    ENG
-                  </th>
-                  <th className="border p-3 w-1/5"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {vocabularies.map((vocabulary, index) => (
-                  <React.Fragment key={index}>
-                    <tr>
-                      <td
-                        className="border p-3"
-                        style={{ wordWrap: 'break-word' }}
-                      >
-                        {vocabulary.indonesia}
-                      </td>
-                      <td
-                        className="border p-3"
-                        style={{ wordWrap: 'break-word' }}
-                      >
-                        {vocabulary.base_form}
-                      </td>
-                      <td className="border p-3 text-center">
-                        <button
-                          className="bg-blue-500 p-2 rounded-lg text-sm text-white"
-                          onClick={() => toggleVocabulary(vocabulary)}
-                        >
-                          {!vocabulary.show ? 'show' : 'hide'}
-                        </button>
-                      </td>
-                    </tr>
+        {isLoadingVocabularies
+          ? 'Loading...'
+          : vocabularies.map((vocabulary) => (
+              <div
+                key={vocabulary.id}
+                className="mb-3 rounded-lg  border border-x-2 border-y-2 border-solid border-primary bg-base-100 p-3"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="text-sm font-normal text-primary">
+                    <span className="mr-1 capitalize">
+                      {vocabulary.base_form}
+                    </span>
+                    <span className="capitalize">({vocabulary.indonesia})</span>
+                  </div>
 
-                    {vocabulary.show ? (
+                  {/* <button
+                    className="flex items-center rounded-full bg-primary p-1 text-primary-content"
+                    onClick={() => toggleVocabulary(vocabulary)}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="inline-block h-4 w-4 align-text-bottom"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M5.293 6.293a1 1 0 0 1 1.414 0L10 9.586l3.293-3.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 0-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button> */}
+                </div>
+                <table className="mt-2 w-full max-w-full table-fixed text-left text-xs">
+                  <thead>
+                    <tr className="">
+                      <th
+                        className="w-1/4 border-b  p-1"
+                        style={{ wordWrap: 'break-word' }}
+                      >
+                        Present
+                      </th>
+                      <th
+                        className="w-1/4 border-b p-1"
+                        style={{ wordWrap: 'break-word' }}
+                      >
+                        Present Participle
+                      </th>
+
+                      <th
+                        className="w-1/4 border-b p-1"
+                        style={{ wordWrap: 'break-word' }}
+                      >
+                        Past
+                      </th>
+                      <th
+                        className="w-1/4 border-b p-1"
+                        style={{ wordWrap: 'break-word' }}
+                      >
+                        Past Participle
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <React.Fragment>
                       <tr>
-                        <td
-                          colSpan="3"
-                          className="border p-3"
-                          style={{ wordWrap: 'break-word' }}
-                        >
-                          <div>indonesia : {vocabulary.indonesia}</div>
-                          <div>english : {vocabulary.base_form}</div>
-                          <div>base form : {vocabulary.base_form}</div>
-                          <div>present : {vocabulary.present}</div>
-                          <div>
-                            present participle : {vocabulary.present_participle}
-                          </div>
-                          <div>past : {vocabulary.past}</div>
-                          <div>
-                            past participle : {vocabulary.past_participle}
-                          </div>
+                        <td className=" p-1" style={{ wordWrap: 'break-word' }}>
+                          {vocabulary.present}
+                        </td>
+                        <td className=" p-1" style={{ wordWrap: 'break-word' }}>
+                          {vocabulary.present_participle}
+                        </td>
+                        <td className=" p-1" style={{ wordWrap: 'break-word' }}>
+                          {vocabulary.past}
+                        </td>
+                        <td className=" p-1" style={{ wordWrap: 'break-word' }}>
+                          {vocabulary.past_participle}
                         </td>
                       </tr>
-                    ) : null}
-                  </React.Fragment>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+                    </React.Fragment>
+                  </tbody>
+                </table>
+              </div>
+            ))}
       </div>
 
       <ModalAppend
@@ -144,8 +152,9 @@ function HomePage() {
       />
 
       <div className="h-10"></div>
+
       <button
-        className="bg-blue-500 p-2 rounded-lg text-sm text-white fixed bottom-4 right-4 capitalize"
+        className="fixed bottom-4 right-4 rounded-lg bg-secondary p-2 text-sm font-medium capitalize text-secondary-content"
         onClick={() => toggleModal(true)}
       >
         Add vocabulary
