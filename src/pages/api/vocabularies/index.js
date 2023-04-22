@@ -54,8 +54,6 @@ const getVocabularies = async (req, res) => {
     console.log(
       JSON.stringify({
         message: 'error guys',
-        GOOGLE_CLIENT_EMAIL,
-        GOOGLE_PRIVATE_KEY,
         error: e
       })
     )
@@ -110,8 +108,6 @@ const createVocabularies = async (req, res) => {
     console.log(
       JSON.stringify({
         message: 'error guys',
-        GOOGLE_CLIENT_EMAIL,
-        GOOGLE_PRIVATE_KEY,
         error: e
       })
     )
